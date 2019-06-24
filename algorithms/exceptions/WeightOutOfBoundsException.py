@@ -1,0 +1,2 @@
+class WeightOutOfBoundsException(Exception):
+    pass

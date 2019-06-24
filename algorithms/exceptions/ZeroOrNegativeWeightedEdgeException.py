@@ -1,0 +1,2 @@
+class ZeroOrNegativeWeightedEdgeException(Exception):
+    pass
