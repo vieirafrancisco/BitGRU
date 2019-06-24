@@ -1,8 +1,10 @@
 from exceptions import ZeroOrNegativeWeightedEdgeException, WeightOutOfBoundsException
 
 class Node:
-    def __init__(self):
+    def __init__(self, label):
         self.adjacences = {}
+        self.__visited = False
+        self.__label = label
 
     def add_edge(self, node, w=1):
         if w <= 0:
@@ -43,3 +45,18 @@ class Node:
                 return self.adjacences[target_node]
         else:
             return 0
+
+    def was_visited(self) -> bool:
+        if self.__visited:
+            return True
+        else:
+            return False
+
+    def set_visited(self, visited: bool) -> None:
+        self.__visited = visited
+
+    def get_label(self) -> str:
+        return self.__label
+
+    def set_label(self, new_label: str) -> None:
+        self.__label = new_label
