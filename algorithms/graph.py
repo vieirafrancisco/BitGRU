@@ -19,6 +19,9 @@ class Graph:
             self.__root = vertice
         self.__vertices.append(vertice)
 
+        for child in vertice.adjacences:
+            self.add_vertice(child) 
+
     def has_vertice(self, vertice):
         if vertice in self.__vertices:
             return True
@@ -27,3 +30,19 @@ class Graph:
 
     def get_root(self):
         return self.__root
+
+    def update_graph(self, vertice, stack):
+        vertice.set_visited(True)
+        stack.append(vertice)
+
+        for adjacent in vertice.adjacences:
+            if adjacent.was_visited() and adjacent in stack:
+                idx = stack.index(adjacent)
+                m = stack[idx]
+                for element in stack[idx+1:]:
+                    if element < m:
+                        m = element
+                for element in stack:
+                    element.remove_edge(adjacent, m)
+            else:
+                self.update_graph(adjacent, stack)
