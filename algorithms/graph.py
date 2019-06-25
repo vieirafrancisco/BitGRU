@@ -46,3 +46,5 @@ class Graph:
                     element.remove_edge(adjacent, m)
             else:
                 self.update_graph(adjacent, stack)
+
+        stack.pop(vertice)
